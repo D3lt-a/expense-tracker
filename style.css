@@ -1,0 +1,109 @@
+body{
+    display: flex;
+    flex: inline;
+}
+
+/* From Uiverse.io by Rudra-M1 */
+.form-container {
+    width: 25%;
+    height: 100%;
+    border-radius: 0.75rem;
+    background-color: #f7f7f7;
+    /* light gray background */
+    padding: 2rem;
+    color: #333;
+    /* dark gray text */
+}
+
+.title {
+    text-align: center;
+    font-size: 1.5rem;
+    line-height: 2rem;
+    font-weight: 700;
+    color: #00698f;
+    /* blue title */
+}
+
+.form {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.input-group {
+    margin-top: 0.25rem;
+    font-size: 0.875rem;
+    line-height: 1.25rem;
+}
+
+.input-group label {
+    display: block;
+    color: #666;
+    /* dark gray label */
+    margin-bottom: 4px;
+}
+
+.input-group input, select {
+    width: 100%;
+    border-radius: 0.375rem;
+    border: 1px solid #ccc;
+    /* light gray border */
+    outline: 0;
+    background-color: #f7f7f7;
+    /* light gray background */
+    padding: 0.75rem 1rem;
+    color: #333;
+    /* dark gray text */
+}
+
+.input-group input:focus, select:focus {
+    border-color: #00698f;
+    /* blue border on focus */
+}
+
+.input-group option:hover {
+    background-color: #e0f7fa;
+    /* light blue background on hover */
+}
+
+.forgot {
+    display: flex;
+    justify-content: flex-end;
+    font-size: 0.75rem;
+    line-height: 1rem;
+    color: #666;
+    /* dark gray forgot password */
+    margin: 8px 0 14px 0;
+}
+
+.signup a {
+    color: #333;
+    /* dark gray link */
+    text-decoration: none;
+    font-size: 14px;
+}
+
+
+.signup a:hover {
+    text-decoration: underline #00698f;
+    /* blue underline on hover */
+}
+
+.sign {
+    display: block;
+    width: 100%;
+    background-color: #00698f;
+    /* blue button */
+    padding: 0.75rem;
+    text-align: center;
+    color: #fff;
+    /* white text */
+    border: none;
+    border-radius: 0.375rem;
+    font-weight: 600;
+}
+
+.expenses-container{
+    width: 85%;
+    background-color: #f7f7f7;
+}
