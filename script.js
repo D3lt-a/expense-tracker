@@ -1,20 +1,24 @@
-document.getElementById('form').addEventListener('submit', function(event) {
-    event.preventDefault(); // Prevent the form from submitting normally
+document.getElementById('form').addEventListener('submit', function (event) {
+    event.preventDefault();
 
-    // Get the values from the form inputs
-    const name = document.getElementById('name').value;
-    const amount = document.getElementById('amount').value;
-    const category = document.getElementById('categories').value;
+    try {
+        const name = document.getElementById('name').value;
+        const amount = document.getElementById('amount').value;
+        const category = document.getElementById('categories').value;
 
-    // Create a new table row
-    const table = document.querySelector('.modern-table tbody');
-    const newRow = table.insertRow();
+        const expense = {
+            name: name,
+            amount: amount,
+            category: category
+        };
 
-    // Insert new cells for each piece of data
-    newRow.insertCell(0).textContent = name;
-    newRow.insertCell(1).textContent = amount;
-    newRow.insertCell(2).textContent = date;
+        localStorage.setItem('Expenses', JSON.stringify(expense))
 
-    // Clear the form inputs
-    document.getElementById('form').reset();
+        alert('Expense saved successfully!');
+    } catch (error) {
+        alert('An error occurred while saving the expense. Please try again.');
+        console.error('Error saving expense:', error);
+    }
+
+
 })
