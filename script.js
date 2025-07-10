@@ -1,4 +1,5 @@
-require("dotenv").config();
+import { firebaseConfig } from './config.js';
+
 
 // Firebase App (the core Firebase SDK) is always required and must be listed first
 import { initializeApp } from "https://www.gstatic.com/firebasejs/11.10.0/firebase-app.js";
@@ -12,14 +13,7 @@ import {
 } from "https://www.gstatic.com/firebasejs/11.10.0/firebase-firestore.js";
 
 // Firebase configuration
-const firebaseConfig = {
-    apiKey: process.env.API_KEY,
-    authDomain: "expense-tracker-3b989.firebaseapp.com",
-    projectId: "expense-tracker-3b989",
-    storageBucket: "expense-tracker-3b989.appspot.com",
-    messagingSenderId: "1032810430328",
-    appId: "1:1032810430328:web:967f1415ef56fe29fc128d",
-};
+
 
 // Initialize Firebase and Firestore
 const app = initializeApp(firebaseConfig);
