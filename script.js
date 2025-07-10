@@ -2,14 +2,24 @@ let deletebtn = () => {
     let deleteButtons = document.querySelectorAll('.delete');
     deleteButtons.forEach(button => {
         button.addEventListener('click', function () {
-            let id = Number(this.dataset.id); 
-            let expenses = JSON.parse(localStorage.getItem('Expenses')) || [];
-            let updatedExpenses = expenses.filter(expense => expense.id !== id); 
-            localStorage.setItem('Expenses', JSON.stringify(updatedExpenses));
-            renderExpenes();
+            if (confirm('Are you sure you want to delete this expense?')) {
+                let id = Number(this.dataset.id);
+                let expenses = JSON.parse(localStorage.getItem('Expenses')) || [];
+                let updatedExpenses = expenses.filter(expense => expense.id !== id);
+                localStorage.setItem('Expenses', JSON.stringify(updatedExpenses));
+                renderExpenes();
+            }
         });
     });
 };
+
+let totalExpenses = () => {
+    let total = 0;
+    JSON.parse(localStorage.getItem('Expenses')).forEach(expense => {
+        total += Number(expense.amount)
+    })
+    document.querySelector('.total').innerText = total;
+}
 
 let renderExpenes = () => {
     let table = document.querySelector('tbody');
@@ -21,12 +31,32 @@ let renderExpenes = () => {
         <td>${expense.name}</td>
         <td>${expense.amount}</td>
         <td>${expense.category}</td>
-        <td><button class="delete" data-id=${expense.id} >Delete</button></td>
+        <td>
+            <button 
+            class="delete" 
+            data-id="${expense.id}" 
+            style="
+                background-color: #e74c3c; 
+                color: #fff; 
+                border: none; 
+                border-radius: 4px; 
+                padding: 6px 14px; 
+                cursor: pointer; 
+                font-size: 14px;
+                transition: background 0.2s;
+            "
+            onmouseover="this.style.backgroundColor='#c0392b'"
+            onmouseout="this.style.backgroundColor='#e74c3c'"
+            >
+            Delete
+            </button>
+        </td>
         `
         table.appendChild(newRow);
     });
 
     deletebtn();
+    totalExpenses();
 }
 
 window.onload = renderExpenes
@@ -34,7 +64,7 @@ window.onload = renderExpenes
 document.getElementById('form').addEventListener('submit', function (event) {
     event.preventDefault();
 
-    const id =  Date.now();
+    const id = Date.now();
     const name = document.getElementById('name').value;
     const amount = document.getElementById('amount').value;
     const category = document.getElementById('categories').value;
