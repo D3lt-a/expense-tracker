@@ -66,27 +66,7 @@ select:focus {
     background-color: #e0f7fa;
 }
 
-.forgot {
-    display: flex;
-    justify-content: flex-end;
-    font-size: 0.75rem;
-    line-height: 1rem;
-    color: #666;
-    margin: 8px 0 14px 0;
-}
-
-.signup a {
-    color: #333;
-    text-decoration: none;
-    font-size: 14px;
-}
-
-
-.signup a:hover {
-    text-decoration: underline #00698f;
-}
-
-.sign {
+.add-expense {
     display: block;
     width: 100%;
     background-color: #00698f;
@@ -96,6 +76,42 @@ select:focus {
     border: none;
     border-radius: 0.375rem;
     font-weight: 600;
+    cursor: pointer;
+}
+
+.add-expense:hover,
+.search button:hover {
+    background-color: #005f7a;
+}
+
+.search {
+    display: flex;
+    gap: 0.5rem;
+    align-items: center;
+    margin-bottom: 1rem;
+}
+
+.search input{
+    font-size: 0.875rem;
+    line-height: 1.25rem;
+    width: 20%;
+    padding: 0.5rem;
+    border-radius: 0.375rem;
+    border: 1px solid #ccc;
+    outline: none;
+}
+
+.search input:focus {
+    border-color: #00698f;
+}
+
+.search button {
+    padding: 0.5rem 1rem;
+    background-color: #00698f;
+    color: #fff;
+    border: none;
+    border-radius: 0.375rem;
+    cursor: pointer;
 }
 
 .expenses-container {
