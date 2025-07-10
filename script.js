@@ -6,10 +6,26 @@ let searchbtn = () => {
         let filteredExpenses = expenses.filter(
             expenses => expenses.name.toLowerCase().includes(str)
         )
-        console.log(filteredExpenses);
         renderExpenses(filteredExpenses);
     })
 }
+
+let categoryFilter = () => {
+    let categorySelect = document.getElementById('srchcategories');
+    categorySelect.addEventListener('change', () => {
+        let selectedCategory = categorySelect.value;
+        let expenses = JSON.parse(localStorage.getItem('Expenses')) || []
+        let filteredCategory = expenses.filter(expense => 
+            expense.category === selectedCategory
+        )
+        console.log(filteredCategory);
+        if (selectedCategory === '') {
+            renderExpenses();
+        } else {
+            renderExpenses(filteredCategory);
+        }
+    })
+} 
 
 let deletebtn = () => {
     let deleteButtons = document.querySelectorAll('.delete');
@@ -108,6 +124,7 @@ let renderExpenses = (filteredExpenses) => {
 window.onload = () => {
     renderExpenses();
     searchbtn();
+    categoryFilter();
 }
 
 document.getElementById('form').addEventListener('submit', function (event) {
