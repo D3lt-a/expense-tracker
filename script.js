@@ -10,6 +10,24 @@ let searchbtn = () => {
     })
 }
 
+let filterDate = () => {
+    let dateSelect = document.getElementById('srchdate');
+    dateSelect.addEventListener('change', () => {
+        let selectDate = dateSelect.value;
+        let expenses = JSON.parse(localStorage.getItem('Expenses')) || [];
+        let filteredDate = [...expenses].sort((a, b) => {
+            if (selectDate === 'new') {
+                return new Date(b.date) - new Date(a.date);
+            } else if (selectDate === 'old') {
+                return new Date(a.date) - new Date(b.date);
+            } else {
+                return 0;
+            }
+        })
+        renderExpenses(filteredDate);
+    })
+}
+
 let categoryFilter = () => {
     let categorySelect = document.getElementById('srchcategories');
     categorySelect.addEventListener('change', () => {
@@ -59,6 +77,7 @@ let renderExpenses = (filteredExpenses) => {
         JSON.parse(localStorage.getItem('Expenses')).forEach(expense => {
             let newRow = document.createElement('tr');
             newRow.innerHTML = `
+            <td>${expense.date}</td>
             <td>${expense.name}</td>
             <td>${expense.amount}</td>
             <td>${expense.category}</td>
@@ -89,6 +108,7 @@ let renderExpenses = (filteredExpenses) => {
         filteredExpenses.forEach(expense => {
             let newRow = document.createElement('tr');
             newRow.innerHTML = `
+            <td>${expense.date}</td>
             <td>${expense.name}</td>
             <td>${expense.amount}</td>
             <td>${expense.category}</td>
@@ -125,6 +145,7 @@ window.onload = () => {
     renderExpenses();
     searchbtn();
     categoryFilter();
+    filterDate();
 }
 
 document.getElementById('form').addEventListener('submit', function (event) {
@@ -134,13 +155,13 @@ document.getElementById('form').addEventListener('submit', function (event) {
     const name = document.getElementById('name').value;
     const amount = document.getElementById('amount').value;
     const category = document.getElementById('categories').value;
-    const total = document.querySelector('span')
 
 
     let Expenses = JSON.parse(localStorage.getItem('Expenses')) || []
 
     const expense = {
         id: id,
+        date: new Date().toLocaleString(),
         name: name,
         amount: amount,
         category: category
