@@ -48,20 +48,20 @@ const renderExpenses = async (filteredExpenses = null) => {
           <td>${expense.name}</td>
           <td>${expense.amount}</td>
           <td>${expense.category}</td>
-          <td>
-        <button class="delete" data-id="${expense.id}" style="
-          background-color: #e74c3c;
-          color: #fff;
-          border: none;
-          border-radius: 4px;
-          padding: 6px 14px;
-          cursor: pointer;
-          font-weight: bold;
-          transition: background 0.2s;
-        " onmouseover="this.style.backgroundColor='#c0392b'" onmouseout="this.style.backgroundColor='#e74c3c'">
-          Delete
-        </button>
-          </td>
+        //   <td>
+        // <button class="delete" data-id="${expense.id}" style="
+        //   background-color: #e74c3c;
+        //   color: #fff;
+        //   border: none;
+        //   border-radius: 4px;
+        //   padding: 6px 14px;
+        //   cursor: pointer;
+        //   font-weight: bold;
+        //   transition: background 0.2s;
+        // " onmouseover="this.style.backgroundColor='#c0392b'" onmouseout="this.style.backgroundColor='#e74c3c'">
+        //   Delete
+        // </button>
+        //   </td>
         `;
         table.appendChild(newRow);
     });
