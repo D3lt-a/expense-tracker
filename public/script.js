@@ -21,6 +21,13 @@ const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
 const expensesCollection = collection(db, "Expenses");
 
+if ('serviceWorker' in navigator) {
+    navigator.serviceWorker.register('service-worker.js')
+        .then(reg => console.log('Service Worker Registered'))
+        .catch(err => console.log('Service Worker Failed', err));
+}
+
+
 // Render expenses from Firestore
 const renderExpenses = async (filteredExpenses = null) => {
     const table = document.querySelector("tbody");
@@ -100,6 +107,7 @@ form.addEventListener("submit", async (e) => {
     try {
         await addDoc(expensesCollection, expense);
         form.reset();
+        alert("Expense added successfully");
         renderExpenses();
     } catch (err) {
         console.error("Error adding expense:", err);
