@@ -1,3 +1,4 @@
+// import { get } from 'http';
 import { firebaseConfig } from './config.js';
 
 
@@ -36,14 +37,25 @@ const renderExpenses = async (filteredExpenses = null) => {
     expenses.forEach((expense) => {
         const newRow = document.createElement("tr");
         newRow.innerHTML = `
-      <td>${expense.date}</td>
-      <td>${expense.name}</td>
-      <td>${expense.amount}</td>
-      <td>${expense.category}</td>
-      <td>
-        <button class="delete" data-id="${expense.id}">Delete</button>
-      </td>
-    `;
+          <td>${expense.date}</td>
+          <td>${expense.name}</td>
+          <td>${expense.amount}</td>
+          <td>${expense.category}</td>
+          <td>
+        <button class="delete" data-id="${expense.id}" style="
+          background-color: #e74c3c;
+          color: #fff;
+          border: none;
+          border-radius: 4px;
+          padding: 6px 14px;
+          cursor: pointer;
+          font-weight: bold;
+          transition: background 0.2s;
+        " onmouseover="this.style.backgroundColor='#c0392b'" onmouseout="this.style.backgroundColor='#e74c3c'">
+          Delete
+        </button>
+          </td>
+        `;
         table.appendChild(newRow);
     });
 
@@ -155,10 +167,44 @@ const filterDate = () => {
     });
 };
 
+let exportCV = () => {
+    let exportbtn = document.querySelector(".exportToCV");
+    exportbtn.addEventListener('click', async () => {
+        try {
+            let expenses = await getDocs(expensesCollection);
+            let csvContent = expenses.docs.map((doc) => {
+                const data = doc.data()
+                return {
+                    Name: data.name,
+                    Amount: data.amount,
+                    Category: data.category,
+                    Date: data.date,
+                }
+            })
+
+            let header = 'Name,Amount,Category,Date';
+            let rows = csvContent.map(row => {
+                return `${row.Name},${row.Amount},${row.Category},${row.Date}`;
+            })
+            let csvString = [header, ...rows].join('\n');
+            let blob = new Blob([csvString], { type: 'text/csv' });
+
+            const url = document.createElement('a');
+            url.href = URL.createObjectURL(blob);
+            url.download = `Kisafi-Expenses-${new Date().toLocaleDateString()}.csv`;;
+            url.click();
+        } catch (error) {
+            alert("Error exporting expenses");
+            console.error("Error exporting expenses:", error);
+        }
+    })
+}
+
 // On page load
 window.onload = () => {
     renderExpenses();
     searchbtn();
     categoryFilter();
     filterDate();
+    exportCV();
 };

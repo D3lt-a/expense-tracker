@@ -40,13 +40,11 @@
             <!-- <button onclick="localStorage.clear('Expenses')">Clear All</button> -->
         </form>
     </div>
-
     <div class="expenses-container">
         <table class="modern-table">
             <p class="title">View Your Expenses</p>
             <div class="search">
                 <input type="text" id="search" placeholder="Search by name..." />
-                <button id="searchbtn">Clear Search</button>
             </div>
             <thead>
                 <tr>
@@ -71,13 +69,13 @@
                 </tr>
             </thead>
             <tbody>
-
             </tbody>
         </table>
-        <p>Total Expenses: <strong><span class="total"></span>Frw</strong></p>
-
+        <div class="expense-output">
+            <button class="exportToCV">Export</button>
+            <p>Total Expenses: <strong><span class="total"></span>Frw</strong></p>
+        </div>
     </div>
-
     <script type="module" src="script.js"></script>
 </body>
 
