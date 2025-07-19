@@ -12,5 +12,16 @@
         "destination": "/index.html"
       }
     ]
-  }
+  },
+  "headers": [
+    {
+      "source": "/config.js",
+      "headers": [
+        {
+          "key": "Content-Type",
+          "value": "application/javascript"
+        }
+      ]
+    }
+  ]
 }
